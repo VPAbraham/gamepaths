@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import GameCard from '../../components/games/GameCard';
 import type { Game } from '../../types/game.types';
 
@@ -49,5 +49,15 @@ describe('GameCard', () => {
   it('should show first genre', () => {
     render(<GameCard game={mockGame} />);
     expect(screen.getByText('Action')).toBeInTheDocument();
+  });
+
+  it('should call onClick when clicked', () => {
+    const mockOnClick = jest.fn();
+    render(<GameCard game={mockGame} onClick={mockOnClick} />);
+
+    const card = screen.getByRole('button');
+    fireEvent.click(card);
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 });

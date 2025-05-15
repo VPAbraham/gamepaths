@@ -2,15 +2,21 @@ import type { Game } from '../../types/game.types';
 
 interface GameCardProps {
   game: Game;
+  onClick?: () => void;
 }
 
-const GameCard = ({ game }: GameCardProps) => {
+const GameCard = ({ game, onClick }: GameCardProps) => {
   const releaseYear = game.released
     ? new Date(game.released).getFullYear()
     : 'TBA';
 
   return (
-    <div className="bg-gray-800 rounded-lg overflow-hidden">
+    <div
+      className="bg-gray-800 rounded-lg overflow-hidden"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+    >
       <img
         src={game.background_image}
         alt={game.name}
