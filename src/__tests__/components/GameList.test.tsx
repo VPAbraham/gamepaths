@@ -39,4 +39,29 @@ describe('GameList', () => {
     render(<GameList />);
     expect(screen.getByText('Loading games...')).toBeInTheDocument();
   });
+
+  it('should render games after loading', async () => {
+    const mockGames = [
+      { id: 1, name: 'Game 1' },
+      { id: 2, name: 'Game 2' },
+    ];
+
+    (getGames as jest.Mock).mockResolvedValue({
+      results: mockGames,
+    });
+
+    render(<GameList />);
+
+    // Wait for games to load
+    expect(await screen.findByTestId('game-1')).toBeInTheDocument();
+    expect(await screen.findByTestId('game-2')).toBeInTheDocument();
+  });
+
+  it('should render error message on API failure', async () => {
+    (getGames as jest.Mock).mockRejectedValue(new Error('API Error'));
+
+    render(<GameList />);
+
+    expect(await screen.findByText('Failed to load games')).toBeInTheDocument();
+  });
 });
