@@ -10,10 +10,11 @@ jest.mock('../../services/rawgApi', () => ({
 
 import { getGames } from '../../services/rawgApi';
 
-const mockGame = {
-  id: 1,
-  slug: 'test-game',
-  name: 'Test Game',
+// Complete mock game with all required properties
+const createMockGame = (id: number, name: string) => ({
+  id,
+  slug: `test-game-${id}`,
+  name,
   released: '2023-01-15',
   background_image: 'https://example.com/image.jpg',
   rating: 4.5,
@@ -26,7 +27,7 @@ const mockGame = {
   ],
   genres: [{ id: 4, name: 'Action', slug: 'action' }],
   short_screenshots: [],
-};
+});
 
 describe('GameList', () => {
   beforeEach(() => {
@@ -42,8 +43,8 @@ describe('GameList', () => {
 
   it('should render games after loading', async () => {
     const mockGames = [
-      { id: 1, name: 'Game 1' },
-      { id: 2, name: 'Game 2' },
+      createMockGame(1, 'Game 1'),
+      createMockGame(2, 'Game 2'),
     ];
 
     (getGames as jest.Mock).mockResolvedValue({
@@ -52,9 +53,8 @@ describe('GameList', () => {
 
     render(<GameList />);
 
-    // Wait for games to load
-    expect(await screen.findByTestId('game-1')).toBeInTheDocument();
-    expect(await screen.findByTestId('game-2')).toBeInTheDocument();
+    expect(await screen.findByText('Game 1')).toBeInTheDocument();
+    expect(await screen.findByText('Game 2')).toBeInTheDocument();
   });
 
   it('should render error message on API failure', async () => {
@@ -63,5 +63,14 @@ describe('GameList', () => {
     render(<GameList />);
 
     expect(await screen.findByText('Failed to load games')).toBeInTheDocument();
+  });
+
+  it('should pass filters to getGames', async () => {
+    const mockFilters = { genres: 4 };
+    (getGames as jest.Mock).mockResolvedValue({ results: [] });
+
+    render(<GameList filters={mockFilters} />);
+
+    expect(getGames).toHaveBeenCalledWith(mockFilters);
   });
 });
