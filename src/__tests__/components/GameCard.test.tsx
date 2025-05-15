@@ -27,4 +27,27 @@ describe('GameCard', () => {
 
     expect(screen.getByText('Test Game')).toBeInTheDocument();
   });
+
+  it('should display game image', () => {
+    render(<GameCard game={mockGame} />);
+
+    const image = screen.getByAltText('Test Game');
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('src', 'https://example.com/image.jpg');
+  });
+
+  it('should show release year', () => {
+    render(<GameCard game={mockGame} />);
+    expect(screen.getByText('2023')).toBeInTheDocument();
+  });
+
+  it('should display metacritic score', () => {
+    render(<GameCard game={mockGame} />);
+    expect(screen.getByText('85/100')).toBeInTheDocument();
+  });
+
+  it('should show first genre', () => {
+    render(<GameCard game={mockGame} />);
+    expect(screen.getByText('Action')).toBeInTheDocument();
+  });
 });
