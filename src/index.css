@@ -1,6 +1,6 @@
 @use './styles/globals.scss';
 @forward './styles/variables.scss';
-@use 'tailwindcss';
+@import 'tailwindcss';
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
