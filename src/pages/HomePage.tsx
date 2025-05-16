@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AdventureSelector from '../components/adventure/AdventureSelector';
 import GameList from '../components/games/GameList';
 import { GENRES } from '../utils/constants';
@@ -27,8 +27,34 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-900">
       <header className="bg-gray-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <h1 className="text-4xl font-bold text-white">🎮 GamePaths</h1>
-          <p className="text-gray-400 mt-2">Discover your next favorite game</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-white">🎮 GamePaths</h1>
+              <p className="text-gray-400 mt-2">
+                Discover your next favorite game
+              </p>
+            </div>
+            <nav className="hidden md:flex items-center gap-6">
+              <Link
+                to="/"
+                className="text-blue-400 hover:text-blue-300 font-medium"
+              >
+                Home
+              </Link>
+              <Link
+                to="#popular"
+                className="text-gray-300 hover:text-white"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById('popular')
+                    ?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Popular
+              </Link>
+            </nav>
+          </div>
         </div>
       </header>
 
@@ -49,7 +75,7 @@ const HomePage = () => {
           </section>
         )}
 
-        <section className="mb-12">
+        <section id="popular" className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">
             🔥 Popular Games
           </h2>
