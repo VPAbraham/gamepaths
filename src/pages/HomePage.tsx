@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AdventureSelector from '../components/adventure/AdventureSelector';
 import GameList from '../components/games/GameList';
 import type { GameFilters } from '../types/adventure.types';
+import { GENRES } from '../utils/constants';
 
 const HomePage = () => {
   const [adventureResults, setAdventureResults] = useState<GameFilters | null>(
@@ -34,6 +35,12 @@ const HomePage = () => {
             <GameList filters={adventureResults} />
           </section>
         )}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">
+            🔥 Popular Games
+          </h2>
+          <GameList filters={{ ordering: '-metacritic', page_size: 8 }} />
+        </section>
       </div>
     </div>
   );
