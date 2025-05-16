@@ -1,3 +1,5 @@
+import AdventureSelector from '../components/adventure/AdventureSelector';
+
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-900">
@@ -10,7 +12,10 @@ const HomePage = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <p className="text-white">HomePage content coming soon...</p>
+        {/* Adventure Selector Section goes here */}
+        <section className="mb-12">
+          <AdventureSelector />
+        </section>
       </div>
     </div>
   );
