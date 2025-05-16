@@ -4,13 +4,15 @@ import HomePage from './pages/HomePage';
 import './App.scss';
 
 const App = () => {
-  <Router>
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </div>
-  </Router>;
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 };
 
 export default App;
