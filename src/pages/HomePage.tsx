@@ -11,6 +11,11 @@ const HomePage = () => {
 
   const handleAdventureComplete = (filters: GameFilters) => {
     setAdventureResults(filters);
+
+    // Smoothly scroll to adventure results
+    document.getElementById('adventure-results')?.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -69,6 +74,14 @@ const HomePage = () => {
           />
         </section>
       </div>
+
+      <footer className="bg-gray-800 mt-16">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <p className="text-center text-gray-400">
+            GamePaths - Discover your next favorite game
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
