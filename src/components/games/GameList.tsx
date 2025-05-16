@@ -20,7 +20,6 @@ const GameList = ({ filters = {} }: GameListProps) => {
     try {
       setLoading(true);
       setError(null);
-      // Fix: Pass filters to getGames
       const response = await getGames(filters);
       setGames(response.results);
     } catch (err) {
@@ -31,11 +30,19 @@ const GameList = ({ filters = {} }: GameListProps) => {
   };
 
   if (loading) {
-    return <div>Loading games...</div>;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <div className="text-white text-lg">Loading games...</div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div className="flex justify-center items-center h-32">
+        <div className="text-red-400 text-lg">{error}</div>
+      </div>
+    );
   }
 
   return (
