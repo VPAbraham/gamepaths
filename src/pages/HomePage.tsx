@@ -1,21 +1,26 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AdventureSelector from '../components/adventure/AdventureSelector';
 import GameList from '../components/games/GameList';
-import type { GameFilters } from '../types/adventure.types';
 import { GENRES } from '../utils/constants';
+import type { GameFilters } from '../types/adventure.types';
+import type { Game } from '../types/game.types';
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [adventureResults, setAdventureResults] = useState<GameFilters | null>(
     null
   );
 
   const handleAdventureComplete = (filters: GameFilters) => {
     setAdventureResults(filters);
-
-    // Smoothly scroll to adventure results
     document.getElementById('adventure-results')?.scrollIntoView({
       behavior: 'smooth',
     });
+  };
+
+  const handleGameClick = (game: Game) => {
+    navigate(`/game/${game.id}`);
   };
 
   return (
@@ -37,7 +42,10 @@ const HomePage = () => {
             <h2 className="text-2xl font-bold text-white mb-6">
               Perfect Games for You
             </h2>
-            <GameList filters={adventureResults} />
+            <GameList
+              filters={adventureResults}
+              onGameClick={handleGameClick}
+            />
           </section>
         )}
 
@@ -45,7 +53,10 @@ const HomePage = () => {
           <h2 className="text-2xl font-bold text-white mb-6">
             🔥 Popular Games
           </h2>
-          <GameList filters={{ ordering: '-metacritic', page_size: 8 }} />
+          <GameList
+            filters={{ ordering: '-metacritic', page_size: 8 }}
+            onGameClick={handleGameClick}
+          />
         </section>
 
         <section className="mb-12">
@@ -58,6 +69,7 @@ const HomePage = () => {
               ordering: '-metacritic',
               page_size: 6,
             }}
+            onGameClick={handleGameClick}
           />
         </section>
 
@@ -71,6 +83,7 @@ const HomePage = () => {
               ordering: '-metacritic',
               page_size: 6,
             }}
+            onGameClick={handleGameClick}
           />
         </section>
       </div>
