@@ -35,11 +35,38 @@ const HomePage = () => {
             <GameList filters={adventureResults} />
           </section>
         )}
+
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">
             🔥 Popular Games
           </h2>
           <GameList filters={{ ordering: '-metacritic', page_size: 8 }} />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">
+            🎯 Action Games
+          </h2>
+          <GameList
+            filters={{
+              genres: GENRES.ACTION,
+              ordering: '-metacritic',
+              page_size: 6,
+            }}
+          />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">
+            🐉 RPG Adventures
+          </h2>
+          <GameList
+            filters={{
+              genres: GENRES.RPG,
+              ordering: '-metacritic',
+              page_size: 6,
+            }}
+          />
         </section>
       </div>
     </div>
