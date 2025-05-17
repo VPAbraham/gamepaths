@@ -1,54 +1,137 @@
-# React + TypeScript + Vite
+# GamePaths
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React/Typescript application that helps users discover new video games through a personalized adventure selector and browse curated game collections.
 
-Currently, two official plugins are available:
+## Project Inspiration
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+GamePaths was inspired by the challenge of discovering new video games in today's overwhelming market. Many gamers know what they enjoy but struggle to find their next favorite title. Traditional game stores and websites typically organize games by genre or release date, but this doesn't address how people actually choose games.
 
-## Expanding the ESLint configuration
+The "Choose Your Own Adventure" approach of GamePaths provides a more natural discovery experience. Instead of browsing endless lists, users answer a series of simple questions about their preferences, and GamePaths guides them toward games that match their system preferences and gaming style. This creates a journey of discovery rather than a simple search, making the process of finding new games enjoyable.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Adventure Selector: Answer questions to get personalized game recommendations
+
+- Game Discovery: Browse popular games and games by genre in a semi-"Choose Your Own Adventure" style
+
+- Game Details: View information about each game
+
+- Responsive Design: Works on desktop, tablet, and mobile
+
+## Technologies Used
+
+### Frontend Framework
+
+- **React 19**: Utilizing the latest React features for building the user interface
+
+- **TypeScript**: For type safety and improved developer experience
+
+- **Vite**: Frontend tooling for faster development and optimized builds
+
+### Styling
+
+- **Tailwind CSS 4**: Utility-first CSS framework allowed to use very little classes and CSS
+
+- **Custom animations**
+
+### Routing and State Management
+
+- **React Router**
+
+- **React Hooks**
+
+### API Integration
+
+- **RAWG Video Games API**
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+
+- pnpm package manager
+
+### Installation
+
+1. Clone the repository
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+git clone <repository-url>
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+
+cd gamepaths
+
+```
+
+2. Install dependencies
+
+```
+
+pnpm install
+
+```
+
+3. Copy provided .env file or acquire your own API Key from [RAWG API](https://rawg.io/apidocs)
+
+4. Start the development server
+
+```
+
+pnpm dev
+
+```
+
+5. Open [http://localhost:5173](http://localhost:5173) to view it in the browser
+
+## Project Structure
+
+```
+
+src/
+
+├── components/ # Reusable UI components
+
+│ ├── adventure/ # Adventure selector components
+
+│ ├── games/ # Game-related components
+
+│ └── ui/ # Generic UI components
+
+├── pages/ # Page components
+
+├── services/ # API services
+
+├── types/ # TypeScript type definitions
+
+├── utils/ # Utility functions and constants
+
+├── App.tsx # Main App component with routing
+
+└── main.tsx # Application entry point
+
+```
+
+## Build
+
+To build the project for production:
+
+```
+
+pnpm build
+
+```
+
+## Testing Scripts
+
+```
+
+pnpm test
+
+pnpm test:watch
+
+pnpm test:coverage
+
 ```

@@ -3,6 +3,7 @@ import { getGames } from '../../services/rawgApi';
 import GameCard from './GameCard';
 import type { Game } from '../../types/game.types';
 import type { GameFilters } from '../../types/adventure.types';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 interface GameListProps {
   filters?: GameFilters;
@@ -33,11 +34,7 @@ const GameList = ({ filters = {}, onGameClick }: GameListProps) => {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-32">
-        <div className="text-white text-lg">Loading games...</div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error) {
