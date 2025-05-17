@@ -16,6 +16,10 @@ export interface Genre {
   name: string;
   slug: string;
 }
+export interface Screenshot {
+  id: number;
+  image: string;
+}
 
 // Game info
 export interface Game {
@@ -29,6 +33,9 @@ export interface Game {
   platforms: PlatformInfo[];
   genres: Genre[];
   short_screenshots: { id: number; image: string }[];
+  description?: string;
+  description_raw?: string;
+  screenshots?: Screenshot[];
 }
 
 // API Response types
