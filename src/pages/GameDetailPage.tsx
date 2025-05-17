@@ -119,13 +119,12 @@ const GameDetailPage = () => {
             </div>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-6">
           <div>
             <h3 className="text-xl font-semibold text-white mb-4">
               Game Information
             </h3>
-            <div className="bg-gray-800 rounded-lg p-6">
+            <div className="bg-gray-800 rounded-lg p-4 md:p-6">
               <div className="space-y-3">
                 <div>
                   <span className="text-gray-400">Release Date:</span>
@@ -161,31 +160,21 @@ const GameDetailPage = () => {
                     ))}
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <div>
-            <h3 className="text-xl font-semibold text-white mb-4">
-              Screenshots
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {game.short_screenshots && game.short_screenshots.length > 0 ? (
-                game.short_screenshots
-                  .slice(0, 4)
-                  .map((screenshot) => (
-                    <img
-                      key={screenshot.id}
-                      src={screenshot.image}
-                      alt="Game screenshot"
-                      className="rounded-lg object-cover h-24 w-full"
-                    />
-                  ))
-              ) : (
-                <div className="col-span-2 text-gray-400 text-center py-8">
-                  No screenshots available
+                <div className="mt-4">
+                  <span className="text-gray-400">Rating:</span>
+                  <div className="flex items-center gap-3 mt-1">
+                    <span className="text-yellow-400 font-semibold">
+                      ⭐ {game.rating}/5
+                    </span>
+                    {game.metacritic && (
+                      <span className="text-green-400 font-semibold">
+                        {game.metacritic}/100 Metacritic
+                      </span>
+                    )}
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

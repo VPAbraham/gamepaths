@@ -27,14 +27,16 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-900">
       <header className="bg-gray-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-4xl font-bold text-white">🎮 GamePaths</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-white">
+                🎮 GamePaths
+              </h1>
               <p className="text-gray-400 mt-2">
                 Discover your next favorite game
               </p>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="mt-4 md:mt-0 flex items-center gap-6">
               <Link
                 to="/"
                 className="text-blue-400 hover:text-blue-300 font-medium"
