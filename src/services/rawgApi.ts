@@ -64,6 +64,14 @@ export async function getGameDetail(id: string | number) {
   return fetchFromApi(`/games/${id}`);
 }
 
+// Get screenshots for game
+
+export async function getGameScreenshots(
+  gameId: string | number
+): Promise<{ results: { id: number; image: string }[] }> {
+  return fetchFromApi(`/games/${gameId}/screenshots`);
+}
+
 // Get games for adventure results
 export async function getAdventureResults(
   filters: GameFilters
