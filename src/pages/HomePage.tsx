@@ -11,7 +11,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const [pageSeeds, setPageSeeds] = useState({
-    popular: 1,
+    popular: 2,
     action: 1,
     rpg: 1,
     indie: 1,
@@ -22,7 +22,6 @@ const HomePage = () => {
   );
 
   useEffect(() => {
-    // Set random page seeds once on component mount
     setPageSeeds({
       popular: getRandomPage(3),
       action: getRandomPage(3),
