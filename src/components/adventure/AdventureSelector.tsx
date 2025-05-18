@@ -40,12 +40,12 @@ const AdventureSelector = ({ onComplete }: AdventureSelectorProps) => {
   };
 
   return (
-    <div className="bg-gray-800 rounded-lg p-6">
+    <div className="bg-gradient-to-r from-blue-900/30 to-purple-00/30 rounded-lg p-6 border border-blue-700/50 shadow-lg shadow-blue-500/10">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-white mb-2">
+        <h2 className="text-3xl font-bold text-white mb-3">
           Can't choose a game to play?
         </h2>
-        <p className="text-gray-400">
+        <p className="text-gray-300 text-lg">
           Answer a few questions and we'll find some great suggestions for you!
         </p>
       </div>
@@ -54,15 +54,19 @@ const AdventureSelector = ({ onComplete }: AdventureSelectorProps) => {
         {adventureSteps.map((_, index) => (
           <div
             key={index}
-            className={`w-3 h-3 rounded-full mx-1 ${
-              index <= currentStep ? 'bg-blue-500' : 'bg-gray-600'
+            className={`w-3 h-3 rounded-full mx-1.5 transition-all duration-300 ${
+              index < currentStep
+                ? 'bg-blue-500'
+                : index === currentStep
+                ? 'bg-blue-400 animate-pulse'
+                : 'bg-gray-600'
             }`}
           />
         ))}
       </div>
 
       <div className="text-center mb-8">
-        <h3 className="text-xl font-semibold text-white">
+        <h3 className="text-2xl font-semibold text-white">
           {currentStepData.question}
         </h3>
       </div>
@@ -72,11 +76,12 @@ const AdventureSelector = ({ onComplete }: AdventureSelectorProps) => {
           <button
             key={option.id}
             onClick={() => handleOptionSelect(option)}
-            className="bg-gray-700 hover:bg-gray-600 rounded-lg p-4 text-center 
-              transition-colors hover:shadow-md border border-gray-700 hover:border-gray-500"
+            className="bg-gray-800 hover:bg-gray-700 rounded-lg p-5 text-center 
+          transition-all duration-300 hover:shadow-md border border-gray-700 
+          hover:border-blue-500 hover:translate-y-[-2px]"
           >
-            <div className="text-3xl mb-2">{option.icon}</div>
-            <div className="text-white font-medium">{option.label}</div>
+            <div className="text-3xl mb-3">{option.icon}</div>
+            <div className="text-white font-medium text-lg">{option.label}</div>
           </button>
         ))}
       </div>

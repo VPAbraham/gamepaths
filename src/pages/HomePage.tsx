@@ -50,20 +50,22 @@ const HomePage = () => {
               <h1 className="text-3xl md:text-4xl font-bold text-white">
                 🎮 GamePaths
               </h1>
-              <p className="text-gray-400 mt-2">
+              <p className="text-blue-300 mt-2">
                 Discover your next favorite game
               </p>
             </div>
             <nav className="mt-4 md:mt-0 flex items-center gap-6">
               <Link
                 to="/"
-                className="text-blue-400 hover:text-blue-300 font-medium"
+                className="text-blue-300 hover:text-blue-200 font-medium text-lg 
+            hover:underline transition-colors"
               >
                 Home
               </Link>
               <Link
                 to="#popular"
-                className="text-gray-300 hover:text-white"
+                className="text-gray-300 hover:text-white text-lg font-medium
+            hover:underline transition-colors"
                 onClick={(e) => {
                   e.preventDefault();
                   document
@@ -83,6 +85,8 @@ const HomePage = () => {
           <AdventureSelector onComplete={handleAdventureComplete} />
         </section>
 
+        <div className="section-divider"></div>
+
         {adventureResults && (
           <section id="adventure-results" className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-6">
@@ -94,6 +98,8 @@ const HomePage = () => {
             />
           </section>
         )}
+
+        <div className="section-divider"></div>
 
         <section id="popular" className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">
@@ -108,6 +114,8 @@ const HomePage = () => {
             onGameClick={handleGameClick}
           />
         </section>
+
+        <div className="section-divider"></div>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">
@@ -124,6 +132,8 @@ const HomePage = () => {
           />
         </section>
 
+        <div className="section-divider"></div>
+
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">
             🐉 RPG Adventures
@@ -138,6 +148,8 @@ const HomePage = () => {
             onGameClick={handleGameClick}
           />
         </section>
+
+        <div className="section-divider"></div>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">👾 Indie Games</h2>
