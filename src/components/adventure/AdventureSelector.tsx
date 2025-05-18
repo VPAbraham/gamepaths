@@ -72,7 +72,8 @@ const AdventureSelector = ({ onComplete }: AdventureSelectorProps) => {
           <button
             key={option.id}
             onClick={() => handleOptionSelect(option)}
-            className="bg-gray-700 hover:bg-gray-600 rounded-lg p-4 text-center transition-colors"
+            className="bg-gray-700 hover:bg-gray-600 rounded-lg p-4 text-center 
+              transition-colors hover:shadow-md border border-gray-700 hover:border-gray-500"
           >
             <div className="text-3xl mb-2">{option.icon}</div>
             <div className="text-white font-medium">{option.label}</div>
