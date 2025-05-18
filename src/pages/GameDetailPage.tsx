@@ -37,7 +37,7 @@ const GameDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <header className="bg-gray-800 shadow-lg">
+      <header className="bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <button
