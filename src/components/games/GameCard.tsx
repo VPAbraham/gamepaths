@@ -19,7 +19,7 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
   return (
     <div
       className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer 
-        hover:shadow-xl hover:scale-105 transform transition-all duration-300"
+    hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       onClick={onClick}
       role="button"
       tabIndex={0}
