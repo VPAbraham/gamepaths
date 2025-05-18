@@ -1,7 +1,7 @@
 import { API_BASE_URL, API_KEY } from '../utils/constants';
 import type { GamesResponse, GenresResponse } from '../types/game.types';
-
 import type { GameFilters } from '../types/adventure.types';
+import type { Game } from '../types/game.types';
 
 // Helper function to build the  query string
 export function buildApiUrl(endpoint: string, params = {}) {
@@ -60,8 +60,27 @@ export async function getGames(
 }
 
 // Get single game details
-export async function getGameDetail(id: string | number) {
-  return fetchFromApi(`/games/${id}`);
+export async function getGameDetail(id: string | number): Promise<Game> {
+  try {
+    const gameData = await fetchFromApi<Game>(`/games/${id}`);
+
+    // Try to get screenshots
+    try {
+      const screenshotsResponse = await getGameScreenshots(id);
+      const gameWithScreenshots: Game = {
+        ...gameData,
+        screenshots: screenshotsResponse.results,
+      };
+      return gameWithScreenshots;
+    } catch (error) {
+      console.error('Failed to fetch screenshots:', error);
+      // Return game data even if screenshots fail
+      return gameData;
+    }
+  } catch (error) {
+    console.error('Failed to fetch game details:', error);
+    throw error;
+  }
 }
 
 // Get screenshots for game
