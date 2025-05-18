@@ -2,43 +2,82 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AdventureSelector from '../../components/adventure/AdventureSelector';
 
-// Mock the constants to avoid import.meta issues
-jest.mock('../../utils/constants', () => ({
-  API_BASE_URL: 'https://api.rawg.io/api',
-  API_KEY: 'test-key',
-  PLATFORMS: {
-    PC: 4,
-    PS5: 187,
-    PS4: 18,
-    PS3: 16,
-    XBOX_SERIES: 186,
-    XBOX_ONE: 1,
-    XBOX_360: 14,
-    SWITCH: 7,
-    WII: 11,
-    NINTENDO_3DS: 8,
-  },
-  GENRES: {
-    ACTION: 4,
-    ADVENTURE: 3,
-    RPG: 5,
-    STRATEGY: 10,
-    SHOOTER: 2,
-    PUZZLE: 7,
-    INDIE: 51,
-    PLATFORMER: 83,
-    RACING: 1,
-    SPORTS: 15,
-    FIGHTING: 6,
-    SIMULATION: 14,
-    ARCADE: 11,
-    FAMILY: 19,
-    BOARD_GAMES: 28,
-    CARD: 17,
-    CASUAL: 40,
-    EDUCATIONAL: 34,
-    MASSIVELY_MULTIPLAYER: 59,
-  },
+// Mock adventure steps
+jest.mock('../../utils/adventureSteps', () => ({
+  adventureSteps: [
+    {
+      id: 'platform',
+      question: 'What is your preferred gaming platform?',
+      options: [
+        {
+          id: 'pc',
+          label: 'PC Gaming',
+          icon: '🖥️',
+          filters: { platforms: 4 },
+        },
+        {
+          id: 'console',
+          label: 'Console Gaming',
+          icon: '🎮',
+          filters: { platforms: [187, 186, 7] },
+        },
+        {
+          id: 'retro',
+          label: 'Retro Gaming',
+          icon: '👾',
+          filters: { platforms: [16, 14] },
+        },
+      ],
+    },
+    {
+      id: 'playstyle',
+      question: 'How do you like to play?',
+      options: [
+        {
+          id: 'solo',
+          label: 'Solo Adventures',
+          icon: '🎯',
+          filters: { tags: 'singleplayer' },
+        },
+        {
+          id: 'coop',
+          label: 'Co-op Fun',
+          icon: '👥',
+          filters: { tags: 'co-op' },
+        },
+        {
+          id: 'competitive',
+          label: 'Competitive',
+          icon: '⚔️',
+          filters: { tags: 'multiplayer' },
+        },
+      ],
+    },
+    {
+      id: 'genre',
+      question: 'What kind of experience?',
+      options: [
+        {
+          id: 'action',
+          label: 'Action Packed',
+          icon: '💥',
+          filters: { genres: 4 },
+        },
+        {
+          id: 'story',
+          label: 'Story Rich',
+          icon: '📚',
+          filters: { genres: [5, 3] },
+        },
+        {
+          id: 'strategy',
+          label: 'Mind Games',
+          icon: '🧩',
+          filters: { genres: [10, 7] },
+        },
+      ],
+    },
+  ],
 }));
 
 describe('AdventureSelector', () => {
