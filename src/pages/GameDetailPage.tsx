@@ -154,6 +154,39 @@ const GameDetailPage = () => {
                 </div>
               </div>
             </div>
+
+            {game.description_raw && (
+              <div className="mt-6">
+                <h3 className="text-xl font-semibold text-white mb-4">About</h3>
+                <div className="bg-gray-800 rounded-lg p-4 md:p-6">
+                  <p className="text-gray-300 leading-relaxed max-h-80 overflow-y-auto">
+                    {game.description_raw}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {game.screenshots && game.screenshots.length > 0 && (
+              <div className="mt-6">
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  Screenshots
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {game.screenshots.slice(0, 4).map((screenshot) => (
+                    <img
+                      key={screenshot.id}
+                      src={screenshot.image}
+                      alt={`Screenshot of ${game.name}`}
+                      className="rounded-lg w-full h-40 object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src =
+                          'https://via.placeholder.com/400x200/374151/ffffff?text=No+Image';
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </>
         )}
       </div>
