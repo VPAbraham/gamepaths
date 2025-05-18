@@ -1,7 +1,12 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GameList from '../../components/games/GameList';
+
+jest.mock('../../components/ui/LoadingSpinner', () => {
+  return function MockLoadingSpinner() {
+    return <div data-testid="loading-spinner">Loading Spinner</div>;
+  };
+});
 
 // Mock the API service
 jest.mock('../../services/rawgApi', () => ({
@@ -38,7 +43,7 @@ describe('GameList', () => {
     (getGames as jest.Mock).mockImplementation(() => new Promise(() => {}));
 
     render(<GameList />);
-    expect(screen.getByText('Loading games...')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
   it('should render games after loading', async () => {
@@ -51,7 +56,9 @@ describe('GameList', () => {
       results: mockGames,
     });
 
-    render(<GameList />);
+    await act(async () => {
+      render(<GameList />);
+    });
 
     expect(await screen.findByText('Game 1')).toBeInTheDocument();
     expect(await screen.findByText('Game 2')).toBeInTheDocument();
@@ -60,7 +67,9 @@ describe('GameList', () => {
   it('should render error message on API failure', async () => {
     (getGames as jest.Mock).mockRejectedValue(new Error('API Error'));
 
-    render(<GameList />);
+    await act(async () => {
+      render(<GameList />);
+    });
 
     expect(await screen.findByText('Failed to load games')).toBeInTheDocument();
   });

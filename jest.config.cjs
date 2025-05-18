@@ -4,6 +4,8 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'], // This line is key
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+    '^../../utils/constants$': '<rootDir>/src/__tests__/utils/mockConstants.ts',
   },
   transform: {
     '^.+\\.(ts|tsx)$': [
