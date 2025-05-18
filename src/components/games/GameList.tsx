@@ -15,10 +15,6 @@ const GameList = ({ filters = {}, onGameClick }: GameListProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadGames();
-  }, [filters]);
-
   const loadGames = async () => {
     try {
       setLoading(true);
@@ -32,6 +28,10 @@ const GameList = ({ filters = {}, onGameClick }: GameListProps) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadGames();
+  }, [JSON.stringify(filters)]);
 
   if (loading) {
     return <LoadingSpinner />;

@@ -45,6 +45,11 @@ export async function getGenres(): Promise<GenresResponse> {
   return fetchFromApi('/genres');
 }
 
+// Helper function to generate random pages
+export function getRandomPage(max = 5): number {
+  return Math.floor(Math.random() * max) + 1;
+}
+
 // Get games with filters
 export async function getGames(
   filters: GameFilters = {}
@@ -52,9 +57,12 @@ export async function getGames(
   const params = {
     page_size: 20,
     ordering: '-metacritic',
-    // API will return games in order of highest to lowest Metacritic score for best game results
     ...filters,
   };
+
+  if (!params.page) {
+    params.page = getRandomPage(5);
+  }
 
   return fetchFromApi('/games', params);
 }

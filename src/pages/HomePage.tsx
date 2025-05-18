@@ -1,16 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AdventureSelector from '../components/adventure/AdventureSelector';
 import GameList from '../components/games/GameList';
 import { GENRES } from '../utils/constants';
 import type { GameFilters } from '../types/adventure.types';
 import type { Game } from '../types/game.types';
+import { getRandomPage } from '../services/rawgApi';
 
 const HomePage = () => {
   const navigate = useNavigate();
+
+  const [pageSeeds, setPageSeeds] = useState({
+    popular: 1,
+    action: 1,
+    rpg: 1,
+    indie: 1,
+  });
+
   const [adventureResults, setAdventureResults] = useState<GameFilters | null>(
     null
   );
+
+  useEffect(() => {
+    // Set random page seeds once on component mount
+    setPageSeeds({
+      popular: getRandomPage(3),
+      action: getRandomPage(3),
+      rpg: getRandomPage(3),
+      indie: getRandomPage(3),
+    });
+  }, []);
 
   const handleAdventureComplete = (filters: GameFilters) => {
     setAdventureResults(filters);
@@ -82,20 +101,25 @@ const HomePage = () => {
             🔥 Popular Games
           </h2>
           <GameList
-            filters={{ ordering: '-metacritic', page_size: 8 }}
+            filters={{
+              ordering: '-metacritic',
+              page_size: 12,
+              page: pageSeeds.popular,
+            }}
             onGameClick={handleGameClick}
           />
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">
-            🎯 Action Games
+            🗡️ Action Games
           </h2>
           <GameList
             filters={{
               genres: GENRES.ACTION,
               ordering: '-metacritic',
-              page_size: 6,
+              page_size: 12,
+              page: pageSeeds.action,
             }}
             onGameClick={handleGameClick}
           />
@@ -109,7 +133,21 @@ const HomePage = () => {
             filters={{
               genres: GENRES.RPG,
               ordering: '-metacritic',
-              page_size: 6,
+              page_size: 12,
+              page: pageSeeds.rpg,
+            }}
+            onGameClick={handleGameClick}
+          />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">👾 Indie Games</h2>
+          <GameList
+            filters={{
+              genres: GENRES.INDIE,
+              ordering: '-metacritic',
+              page_size: 12,
+              page: pageSeeds.indie,
             }}
             onGameClick={handleGameClick}
           />

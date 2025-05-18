@@ -23,6 +23,7 @@ export interface GameFilters {
   page_size?: number;
   search?: string;
   dates?: string;
+  page?: number;
 }
 
 // Keeps track of where the user is in the CYOA
