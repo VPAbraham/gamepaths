@@ -20,7 +20,7 @@ The "Choose Your Own Adventure" approach of GamePaths provides a more natural di
 
 ## Live Demo
 
-The application is deployed and available at [the following link](https://gamepaths-nevp-l6joxi3u2-victor-abrahams-projects-d19cbed7.vercel.app), via Vercel.
+The application is deployed and available at [the following link](https://gamepaths-nevp.vercel.app/), via Vercel.
 
 ## Technologies Used
 
