@@ -10,6 +10,7 @@ const GameDetailPage = () => {
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -33,6 +34,10 @@ const GameDetailPage = () => {
 
   const handleGoBack = () => {
     navigate(-1);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
   };
 
   return (
@@ -72,31 +77,31 @@ const GameDetailPage = () => {
           </div>
         ) : (
           <>
-            <div className="relative mb-8 rounded-lg overflow-hidden">
-              <img
-                src={game.background_image}
-                alt={game.name}
-                className="w-full h-64 object-cover"
-                onError={(e) => {
-                  e.currentTarget.src =
-                    'https://via.placeholder.com/400x200/374151/ffffff?text=No+Image';
-                }}
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                <div className="p-6">
-                  <div className="flex items-center gap-4 mt-2">
-                    <span className="text-yellow-400 font-semibold">
-                      ⭐ {game.rating}/5
-                    </span>
-                    {game.metacritic && (
-                      <span className="text-green-400 font-semibold">
-                        {game.metacritic}/100 Metacritic
-                      </span>
-                    )}
+            <div className="relative mb-8 rounded-lg overflow-hidden bg-gray-800">
+              {!imageError && game.background_image ? (
+                <img
+                  src={game.background_image}
+                  alt={game.name}
+                  className="w-full object-cover"
+                  style={{
+                    height: 'auto',
+                    maxHeight: '500px',
+                    minHeight: '300px',
+                  }}
+                  onError={handleImageError}
+                />
+              ) : (
+                <div className="flex items-center justify-center h-80 bg-gray-700">
+                  <div className="text-center">
+                    <div className="text-5xl mb-3">🎮</div>
+                    <div className="text-gray-400 text-lg px-4">
+                      {game.name}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
+
             <div>
               <h3 className="text-xl font-semibold text-white mb-4">
                 Game Information
@@ -172,7 +177,7 @@ const GameDetailPage = () => {
                   Screenshots
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
-                  {game.screenshots.slice(0, 4).map((screenshot) => (
+                  {game.screenshots.slice(0, 6).map((screenshot) => (
                     <img
                       key={screenshot.id}
                       src={screenshot.image}
