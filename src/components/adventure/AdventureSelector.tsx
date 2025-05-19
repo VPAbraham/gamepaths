@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { adventureSteps } from '../../utils/adventureSteps';
 import type { AdventureOption, GameFilters } from '../../types/adventure.types';
 
