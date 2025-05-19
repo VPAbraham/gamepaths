@@ -1,5 +1,5 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import GameCard from '../../components/games/GameCard';
 import type { Game } from '../../types/game.types';
 
