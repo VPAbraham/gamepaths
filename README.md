@@ -18,6 +18,10 @@ The "Choose Your Own Adventure" approach of GamePaths provides a more natural di
 
 - Responsive Design: Works on desktop, tablet, and mobile
 
+## Live Demo
+
+The application is deployed and available at [the following link](https://gamepaths-nevp-l6joxi3u2-victor-abrahams-projects-d19cbed7.vercel.app), via Vercel.
+
 ## Technologies Used
 
 ### Frontend Framework
@@ -44,11 +48,20 @@ The "Choose Your Own Adventure" approach of GamePaths provides a more natural di
 
 - **RAWG Video Games API**
 
+### Testing
+
+- **Jest**: Testing framework
+- **React Testing Library**: For component-based testing
+
+### Deployment
+
+- **Vercel**: For easy deployment and hosting
+
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js
+- Node.js (v18+)
 
 - pnpm package manager
 
@@ -58,11 +71,17 @@ The "Choose Your Own Adventure" approach of GamePaths provides a more natural di
 
 ```
 
-git clone <repository-url>
+
+
+git clone https://github.com/VPAbraham/gamepaths.git
+
+
 
 
 
 cd gamepaths
+
+
 
 ```
 
@@ -70,7 +89,11 @@ cd gamepaths
 
 ```
 
+
+
 pnpm install
+
+
 
 ```
 
@@ -80,7 +103,11 @@ pnpm install
 
 ```
 
+
+
 pnpm dev
+
+
 
 ```
 
@@ -90,27 +117,51 @@ pnpm dev
 
 ```
 
+
+
 src/
+
+
 
 ├── components/ # Reusable UI components
 
+
+
 │ ├── adventure/ # Adventure selector components
+
+
 
 │ ├── games/ # Game-related components
 
+
+
 │ └── ui/ # Generic UI components
+
+
 
 ├── pages/ # Page components
 
+
+
 ├── services/ # API services
+
+
 
 ├── types/ # TypeScript type definitions
 
+
+
 ├── utils/ # Utility functions and constants
+
+
 
 ├── App.tsx # Main App component with routing
 
+
+
 └── main.tsx # Application entry point
+
+
 
 ```
 
@@ -120,18 +171,40 @@ To build the project for production:
 
 ```
 
+
+
 pnpm build
 
-```
 
-## Testing Scripts
 
 ```
 
+## Testing
+
+Run the test suite:
+
+```
 pnpm test
+```
 
-pnpm test:watch
-
-pnpm test:coverage
+Run tests in watch mode:
 
 ```
+pnpm test:watch
+```
+
+Generate test coverage report:
+
+```
+pnpm test:coverage
+```
+
+## Future Enhancements
+
+- User accounts to save favorite games
+
+- More detailed game filtering options
+
+- Integration with game stores for pricing information
+
+- Expanded adventure paths with more specific recommendations
