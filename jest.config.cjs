@@ -1,11 +1,13 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'], // This line is key
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^(\\.{1,2}/.*)\\.js$': '$1',
     '^../../utils/constants$': '<rootDir>/src/utils/mockConstants.ts',
+    '^../utils/constants$': '<rootDir>/src/utils/mockConstants.ts',
+    'utils/constants': '<rootDir>/src/utils/mockConstants.ts',
   },
   transform: {
     '^.+\\.(ts|tsx)$': [

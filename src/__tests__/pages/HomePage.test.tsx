@@ -3,7 +3,12 @@ import { BrowserRouter } from 'react-router-dom';
 import HomePage from '../../pages/HomePage';
 import '@testing-library/jest-dom';
 
-// Mock the components that make API calls
+jest.mock('../../services/rawgApi', () => ({
+  getRandomPage: jest.fn(() => 1),
+  getGames: jest.fn(),
+  getGameDetail: jest.fn(),
+}));
+
 jest.mock('../../components/games/GameList', () => {
   return function MockGameList({
     filters,
@@ -48,10 +53,15 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText('GamePaths')).toBeInTheDocument();
     expect(
-      screen.getByText('Discover your next favorite game')
+      screen.getByRole('heading', { name: /GamePaths/i })
     ).toBeInTheDocument();
+
+    const headerTagline = screen.getByText(
+      /Discover your next favorite game/i,
+      { selector: '.text-blue-300' }
+    );
+    expect(headerTagline).toBeInTheDocument();
   });
 
   it('renders the adventure selector', () => {
@@ -71,10 +81,10 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    const popularSection = screen.getByText('Popular Games');
+    const popularSection = screen.getByText(/Popular Games/i);
     expect(popularSection).toBeInTheDocument();
 
-    const actionSection = screen.getByText('Action Games');
+    const actionSection = screen.getByText(/Action Games/i);
     expect(actionSection).toBeInTheDocument();
 
     const gameLists = screen.getAllByTestId('game-list');
@@ -88,13 +98,12 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    // Initially, adventure results section should not be present
-    expect(screen.queryByText('Perfect Games for You')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Perfect Games for You/i)
+    ).not.toBeInTheDocument();
 
-    // Trigger adventure completion
     fireEvent.click(screen.getByTestId('adventure-selector'));
 
-    // Adventure results section should now be visible
-    expect(screen.getByText('Perfect Games for You')).toBeInTheDocument();
+    expect(screen.getByText(/Perfect Games for You/i)).toBeInTheDocument();
   });
 });
