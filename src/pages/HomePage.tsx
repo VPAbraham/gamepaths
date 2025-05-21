@@ -85,8 +85,6 @@ const HomePage = () => {
           <AdventureSelector onComplete={handleAdventureComplete} />
         </section>
 
-        <div className="section-divider"></div>
-
         {adventureResults && (
           <section id="adventure-results" className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-6">
