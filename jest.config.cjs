@@ -5,8 +5,6 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^../../utils/constants$': '<rootDir>/src/utils/mockConstants.ts',
-    '^../utils/constants$': '<rootDir>/src/utils/mockConstants.ts',
     'utils/constants': '<rootDir>/src/utils/mockConstants.ts',
   },
   transform: {

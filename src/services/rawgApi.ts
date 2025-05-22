@@ -40,11 +40,6 @@ export async function fetchFromApi<T>(
   return response.json();
 }
 
-// Get all genres
-export async function getGenres(): Promise<GenresResponse> {
-  return fetchFromApi('/genres');
-}
-
 // Helper function to generate random pages
 export function getRandomPage(max = 5): number {
   return Math.floor(Math.random() * max) + 1;
@@ -97,6 +92,13 @@ export async function getGameScreenshots(
   gameId: string | number
 ): Promise<{ results: { id: number; image: string }[] }> {
   return fetchFromApi(`/games/${gameId}/screenshots`);
+}
+
+// Functions below aren't currently in use be maybe be useful for future app enhancements
+// ---------------------------------------------------------------------------------------
+// Get all genres
+export async function getGenres(): Promise<GenresResponse> {
+  return fetchFromApi('/genres');
 }
 
 // Get games for adventure results
