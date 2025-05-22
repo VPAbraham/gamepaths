@@ -16,13 +16,22 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
     setImageError(true);
   };
 
+  // Add keyboard event handler
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
-    <a
+    <div
       className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer 
     hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       onClick={onClick}
       role="button"
       tabIndex={0}
+      onKeyDown={handleKeyDown}
     >
       <div className="h-48 bg-gray-700">
         {!imageError && game.background_image ? (
@@ -66,7 +75,7 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
           ))}
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 
