@@ -17,14 +17,14 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
   };
 
   return (
-    <div
+    <a
       className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer 
     hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       onClick={onClick}
       role="button"
       tabIndex={0}
     >
-      <div className="relative h-48 bg-gray-700">
+      <div className="h-48 bg-gray-700">
         {!imageError && game.background_image ? (
           <img
             src={game.background_image}
@@ -66,7 +66,7 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
           ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

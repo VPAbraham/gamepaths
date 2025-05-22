@@ -10,25 +10,16 @@ import { getRandomPage } from '../services/rawgApi';
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const [pageSeeds, setPageSeeds] = useState({
-    popular: 2,
-    action: 1,
-    rpg: 1,
-    indie: 1,
+  const [pageSeeds] = useState({
+    popular: getRandomPage(3),
+    action: getRandomPage(3),
+    rpg: getRandomPage(3),
+    indie: getRandomPage(3),
   });
 
   const [adventureResults, setAdventureResults] = useState<GameFilters | null>(
     null
   );
-
-  useEffect(() => {
-    setPageSeeds({
-      popular: getRandomPage(3),
-      action: getRandomPage(3),
-      rpg: getRandomPage(3),
-      indie: getRandomPage(3),
-    });
-  }, []);
 
   const handleAdventureComplete = (filters: GameFilters) => {
     setAdventureResults(filters);
@@ -84,8 +75,6 @@ const HomePage = () => {
         <section className="mb-12">
           <AdventureSelector onComplete={handleAdventureComplete} />
         </section>
-
-        <div className="section-divider"></div>
 
         {adventureResults && (
           <section id="adventure-results" className="mb-12">
