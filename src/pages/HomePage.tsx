@@ -21,15 +21,6 @@ const HomePage = () => {
     null
   );
 
-  // useEffect(() => {
-  //   setPageSeeds({
-  //     popular: getRandomPage(3),
-  //     action: getRandomPage(3),
-  //     rpg: getRandomPage(3),
-  //     indie: getRandomPage(3),
-  //   });
-  // }, []);
-
   const handleAdventureComplete = (filters: GameFilters) => {
     setAdventureResults(filters);
     document.getElementById('adventure-results')?.scrollIntoView({

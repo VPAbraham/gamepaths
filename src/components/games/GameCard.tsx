@@ -17,7 +17,7 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
   };
 
   return (
-    <div
+    <a
       className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer 
     hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       onClick={onClick}
@@ -66,7 +66,7 @@ const GameCard = ({ game, onClick }: GameCardProps) => {
           ))}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
